@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${reservation != null} ? 'Update Reservation' : 'Add Reservation'"></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-color: lightgrey;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            color: #f8f9fa;
+        }
+
+        .form-container {
+            background-color: rgba(0, 0, 0, 0.75);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        label {
+            font-size: 18px;
+            color: #f8f9fa;
+        }
+
+        h4 {
+            color: #f8f9fa;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group input,
+        .form-group select {
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #495057;
+            color: #f8f9fa;
+            border: none;
+        }
+
+        .form-group input::placeholder {
+            color: #ced4da;
+        }
+
+        .btn-primary {
+            background-color: #0062cc;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 30px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+            color: black;
+        }
+
+        .btn-primary:hover {
+            background-color: #004a99;
+        }
+    </style>
+</head>
+<body>
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="form-container col-md-6">
+        <form th:method="POST" th:action="@{${reservation != null} ? '/reservation/' + ${reservation.getId()} : '/reservation'}">
+            <h4 th:text="${reservation != null} ? 'Update Your Reservation' : 'Reserve and have a wonderful trip'"></h4>
+
+            <div class="form-group">
+                <label for="checked_in">Check-In Date:</label>
+                <input type="date" id="checked_in" name="checked_in" th:value="${reservation?.getChecked_in()}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="checked_out">Check-Out Date:</label>
+                <input type="date" id="checked_out" name="checked_out" th:value="${reservation?.getChecked_out()}" required>
+            </div>
+
+            <div class="form-group" th:if="${reservation != null}">
+                <label for="reservationStatus">Reservation Status:</label>
+                <select id="reservationStatus" name="reservationStatus" required>
+                    <option th:each="status : ${statuses}"
+                            th:text="${status}"
+                            th:value="${status}"
+                            th:selected="${reservation != null && reservation.getReservationStatus() == status}"></option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="hotel">Hotel:</label>
+                <select id="hotel" name="hotel" required>
+                    <option th:each="hotel : ${hotels}"
+                            th:text="${hotel.getName()}"
+                            th:value="${hotel.getId()}"
+                            th:selected="${reservation != null && reservation.getHotel().getId() == hotel.getId()}"></option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="room">Room:</label>
+                <select id="room" name="room" required>
+                    <option th:each="room : ${rooms}"
+                            th:text="${room.getRoomType()}"
+                            th:value="${room.getId()}"
+                            th:selected="${reservation != null && reservation.getRoom().getId() == room.getId()}"></option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="guest">Guest Email:</label>
+                <input type="email" name="guest" id="guest" placeholder="Enter guest email" th:value="${reservation?.getGuest()?.getEmail()}" required>
+                <div th:if="${emailError != null}" class="text-danger">
+                    <p th:text="${emailError}"></p>
+                    <a href="/guest/new" class="btn btn-primary rounded-pill">Sign In</a>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <a class="btn btn-primary" href="/hotelManagement">Home</a>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Guests</title>-->
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"-->
+<!--          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
+<!--    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"-->
+<!--            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"-->
+<!--            crossorigin="anonymous"></script>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"-->
+<!--            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"-->
+<!--            crossorigin="anonymous"></script>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"-->
+<!--            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"-->
+<!--            crossorigin="anonymous"></script>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            background-image: url("/images/employeesBackground.jpg");-->
+<!--            background-size: cover;-->
+<!--            background-repeat: no-repeat;-->
+<!--            background-attachment: fixed;-->
+<!--            background-position: top center;-->
+<!--        }-->
+
+<!--        .card-img-top {-->
+<!--            height: 200px;-->
+<!--            object-fit: cover;-->
+<!--        }-->
+
+<!--        .list-group-item {-->
+<!--            background-color: floralwhite;-->
+<!--            font-weight: bold;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div>-->
+<!--    <div>-->
+<!--        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: floralwhite">-->
+<!--            <div class="container-fluid">-->
+<!--                <a class="navbar-brand" href="/hotelManagement" style="font-weight: bold; color: black;">Home Page</a>-->
+<!--                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--                    <span class="navbar-toggler-icon"></span>-->
+<!--                </button>-->
+<!--                <div class="collapse navbar-collapse" id="navbarNav">-->
+<!--                    <ul class="navbar-nav">-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" href="/hotels" style="font-weight: bold;">Hotels</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" href="/rooms" style="font-weight: bold;">Rooms</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" href="/guests" style="font-weight: bold;">Guests</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" href="/employees" style="font-weight: bold;">Employees</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" href="/reservations" style="font-weight: bold;">Reservations</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" href="/reservation/add" style="font-weight: bold;">Reserve</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item ml-auto">-->
+<!--                            <a class="nav-link" href="/hotel/add" style="font-weight: bold;">Add Hotel</a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </nav>-->
+<!--    </div>-->
+<!--        <div style="padding-left: 30px;padding-top: 30px">-->
+<!--            <form class="form-inline" method="get" action="/guests" style="padding-bottom: 20px">-->
+<!--                <label for="email" style="font-weight: bold;margin-right: 10px">Search by Email:</label>-->
+<!--                <input type="email" name="email" id="email"-->
+<!--                       th:placeholder="${emailError} ? 'Doesn\'t Exist' : 'Search By Email'"-->
+<!--                       style="width: 150px;margin-right: 10px" required>-->
+<!--                <button type="submit" class="btn btn-primary rounded-pill" style="margin-right: 10px">Search</button>-->
+<!--                <a class="btn btn-primary rounded-pill" href="/guests">Reset</a>-->
+<!--            </form>-->
+
+<!--            <form class="form-inline" method="get" action="/guests">-->
+<!--                <label for="phone" style="font-weight: bold;margin-right: 10px">Search by Phone:</label>-->
+<!--                <input type="text" name="phone" id="phone"-->
+<!--                       th:placeholder="${phoneError} ? 'Doesn\'t Exist' : 'Search By Phone'"-->
+<!--                       style="width: 150px;margin-right: 10px" required>-->
+<!--                <button type="submit" class="btn btn-primary rounded-pill" style="margin-right: 10px">Search</button>-->
+<!--                <a class="btn btn-primary rounded-pill" href="/guests">Reset</a>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--        <div class="container-fluid d-flex justify-content-center">-->
+<!--            <a class="navbar-brand" href="#">-->
+<!--                <img src="/images/hotelMen.png" alt="nav" style="height: auto;width: 375px;padding-top: 55px;">-->
+<!--            </a>-->
+<!--        </div>-->
+<!--</div>-->
+<!--<div class="container-fluid">-->
+<!--    <div class="row" style="padding-top: 50px;padding-left: 70px; margin-bottom: 60px;">-->
+<!--        <div th:each="guest : ${guestPage.content}" class="col-lg-4" style="padding-bottom: 45px">-->
+<!--            <div class="card" style="width: 18rem;background-color: floralwhite ;border: none">-->
+<!--                <img src="/images/guestLogoBackk-removebg-preview.png" class="card-img-top" alt="...">-->
+<!--                <div class="card-body">-->
+<!--                    <h5 class="card-title"-->
+<!--                        th:text="'Guest is: ' + ${guest.getName()} + '  '+ ${guest.getSurname()}"></h5>-->
+<!--                </div>-->
+<!--                <ul class="list-group list-group-flush">-->
+<!--                    <li class="list-group-item" th:text="'Email: ' + ${guest.getEmail()}"></li>-->
+<!--                    <li class="list-group-item" th:text="'Phone: ' + ${guest.getPhone()}"></li>-->
+<!--                    <li class="list-group-item" th:if="${guest.hasReservation}">Made a Reservation-->
+<!--                    </li>-->
+<!--                    <li class="list-group-item" th:if="${not guest.hasReservation}">Hasn't made a Reservation-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--                <div class="card-body">-->
+<!--                    <div class="row">-->
+<!--                        <a th:href="@{'/guest/details/'+${guest.getId()} }"-->
+<!--                           class="btn btn-primary rounded-pill" style="margin-right: 10px">Details</a>-->
+<!--                        <a th:href="@{'/guest/'+${guest.getId()} }"-->
+<!--                           class="btn btn-primary rounded-pill" style="margin-right: 10px">Edit</a>-->
+<!--                        <form th:action="@{'/guest/delete/'+${guest.getId()}}" th:method="POST">-->
+<!--                            <button class="btn btn-danger rounded-pill" type="submit">Delete</button>-->
+<!--                        </form>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<nav aria-label="Page navigation">-->
+<!--    <ul class="pagination justify-content-center">-->
+<!--        <li class="page-item" th:classappend="${guestPage.hasPrevious()} ? '' : 'disabled'">-->
+<!--            <a class="page-link" th:href="@{'/guests?page=' + ${guestPage.number - 1}}" aria-label="Previous">-->
+<!--                <span aria-hidden="true">&laquo;</span>-->
+<!--            </a>-->
+<!--        </li>-->
+<!--        <li th:each="i : ${#numbers.sequence(0, guestPage.totalPages - 1)}"-->
+<!--            th:classappend="${guestPage.number == i} ? 'active'">-->
+<!--            <a class="page-link" th:href="@{'/guests?page=' + ${i}}" th:text="${i + 1}">1</a>-->
+<!--        </li>-->
+<!--        <li class="page-item" th:classappend="${guestPage.hasNext()} ? '' : 'disabled'">-->
+<!--            <a class="page-link" th:href="@{'/guests?page=' + ${guestPage.number + 1}}" aria-label="Next">-->
+<!--                <span aria-hidden="true">&raquo;</span>-->
+<!--            </a>-->
+<!--        </li>-->
+<!--    </ul>-->
+<!--</nav>-->
+
+
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Guests</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-image: url("/images/employeesBackground.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: top center;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand, .nav-link, #navSign .nav-link {
+            color: #333;
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link.active {
+            color: #0056b3;
+            border-bottom: 2px solid #0056b3;
+        }
+
+        .form-inline {
+            margin-left: auto;
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .list-group-item {
+            background-color: floralwhite;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/hotelManagement">Home Page</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/hotels">Hotels</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/rooms">Rooms</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/guests">Guests</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/employees">Employees</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/reservations">Reservations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/reservation/add">Reserve</a>
+                </li>
+                <li class="nav-item ml-auto">
+                    <a class="nav-link" href="/hotel/add">Add Hotel</a>
+                </li>
+            </ul>
+            <div class="form-inline ml-auto">
+                <a class="btn btn-primary rounded-pill" href="/guest/new">Sign in</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid" style="padding-top: 30px;">
+    <form class="form-inline" method="get" action="/guests" style="padding-bottom: 20px;">
+        <label for="email" style="font-weight: bold; margin-right: 10px;">Search by Email:</label>
+        <input type="email" name="email" id="email" placeholder="Search By Email"
+               style="width: 150px; margin-right: 10px;" required>
+        <button type="submit" class="btn btn-primary rounded-pill" style="margin-right: 10px;">Search</button>
+        <a class="btn btn-primary rounded-pill" href="/guests">Reset</a>
+    </form>
+
+    <form class="form-inline" method="get" action="/guests">
+        <label for="phone" style="font-weight: bold; margin-right: 10px;">Search by Phone:</label>
+        <input type="text" name="phone" id="phone" placeholder="Search By Phone"
+               style="width: 150px; margin-right: 10px;" required>
+        <button type="submit" class="btn btn-primary rounded-pill" style="margin-right: 10px;">Search</button>
+        <a class="btn btn-primary rounded-pill" href="/guests">Reset</a>
+    </form>
+</div>
+
+<div class="container-fluid d-flex justify-content-center">
+    <a class="navbar-brand" href="#">
+        <img src="/images/hotelMen.png" alt="nav" style="height: auto; width: 375px; padding-top: 55px;">
+    </a>
+</div>
+
+<div class="container">
+    <div class="row" style="padding-top: 50px;">
+        <div class="col-lg-4" th:each="guest : ${guestPage.content}" style="padding-bottom: 45px;">
+            <div class="card" style="width: 18rem; background-color: floralwhite; border: none;">
+                <img src="/images/guestLogoBackk-removebg-preview.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title"
+                        th:text="'Guest is: ' + ${guest.getName()} + '  '+ ${guest.getSurname()}"></h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" th:text="'Email: ' + ${guest.getEmail()}"></li>
+                    <li class="list-group-item" th:text="'Phone: ' + ${guest.getPhone()}"></li>
+                    <li class="list-group-item" th:if="${guest.hasReservation}">Made a Reservation</li>
+                    <li class="list-group-item" th:if="${not guest.hasReservation}">Hasn't made a Reservation</li>
+                </ul>
+                <div class="card-body">
+                    <div class="row">
+                        <a th:href="@{'/guest/details/'+${guest.getId()}}" class="btn btn-primary rounded-pill"
+                           style="margin-right: 10px;">Details</a>
+                        <a th:href="@{'/guest/'+${guest.getId()}}" class="btn btn-primary rounded-pill"
+                           style="margin-right: 10px;">Edit</a>
+                        <form th:action="@{'/guest/delete/'+${guest.getId()}}" th:method="POST">
+                            <button class="btn btn-danger rounded-pill" type="submit">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        <li class="page-item" th:classappend="${guestPage.hasPrevious()} ? '' : 'disabled'">
+            <a class="page-link"
+               th:href="@{/guests(size=${guestPage.size}, page=${guestPage.number - 1})}">Previous</a>
+        </li>
+
+        <li class="page-item" th:each="pageNum : ${#numbers.sequence(0, guestPage.totalPages - 1)}"
+            th:classappend="${pageNum == guestPage.number} ? 'active'">
+            <a class="page-link" th:href="@{/guests(size=${guestPage.size}, page=${pageNum})}"
+               th:text="${pageNum + 1}"></a>
+        </li>
+
+        <li class="page-item" th:classappend="${guestPage.hasNext()} ? '' : 'disabled'">
+            <a class="page-link" th:href="@{/guests(size=${guestPage.size}, page=${guestPage.number + 1})}">Next</a>
+        </li>
+    </ul>
+</nav>
+</body>
+</html>
+

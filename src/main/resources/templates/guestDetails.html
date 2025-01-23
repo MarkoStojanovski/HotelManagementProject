@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guest Details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center" th:text="${guest.getName()} + '  ' + ${guest.getSurname()}" style="padding-top: 35px;"></h1>
+    <div class="text-center">
+<!--        <img th:if="${employee.getGender().toString()=='MALE' or employee.getGender().toString()=='OTHERS'}"-->
+<!--             src="/employeeLogo-removebg-preview.png" alt="Emp Photo" class="emp-photo">-->
+<!--        <img th:if="${employee.getGender().toString()=='FEMALE'}" src="/empFemale-removebg-preview.png" alt="Emp Photo"-->
+<!--             class="emp-photo">-->
+        <img src="/images/manfem-removebg-preview.png" alt="guestLogo">
+    </div>
+    <div class="room-details">
+        <div class="row" style="padding-top: 35px;">
+            <div class="col-md-4">
+                <h6 class="detail-label">Email:</h6>
+                <h6 class="detail-value" th:text="${guest.getEmail()}"></h6>
+            </div>
+            <div class="col-md-4">
+                <h6 class="detail-label">Phone:</h6>
+                <h6 class="detail-value" th:text="${guest.getPhone()}"></h6>
+            </div>
+            <div class="col-md-4">
+                <h6 class="detail-label">Date of Birth:</h6>
+                <h6 class="detail-value" th:text="${guest.getDate_of_birth()}"></h6>
+            </div>
+        </div>
+        <div class="row" style="padding-top: 35px;padding-bottom: 60px">
+            <div class="col-md-4">
+                <h6 class="detail-label">Nationality:</h6>
+                <h6 class="detail-value" th:text="${guest.getNationality()}"></h6>
+            </div>
+            <div class="col-md-4" th:if="${guest.hasReservation}">
+                <h6 class="detail-label">Reservation:</h6>
+                <h6 class="detail-value">Guest has made a Reservation</h6>
+            </div>
+        </div>
+        <div class="row" style="padding-top: 35px;padding-bottom: 60px">
+            <a class="btn btn-primary rounded-pill" href="/hotelManagement" style="margin-right: 15px">Home</a>
+            <a class="btn btn-primary rounded-pill" href="/guests">Back</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

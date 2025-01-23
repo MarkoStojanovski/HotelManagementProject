@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-kenU5E5+4x3x40G7ue2HNh1Iz8K0l+Gp5IoO7tLO7BqFup8F0w1i1ETh+5O8XxgL" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        .hero {
+            background-image: url('/images/hotelMenaggg.jpg');
+            background-size: cover;
+            background-position: bottom;
+            height: 70vh;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            color: black;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: black;
+        }
+
+        .hero .btn {
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            border-radius: 50px;
+        }
+
+        .card {
+            transition: transform 0.3s ease;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .navbar {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .navbar-brand img {
+            max-height: 50px;
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .logo-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .logo-container img{
+            height: 95px;
+            width: auto;
+        }
+
+        .feature-cards {
+            display: flex;
+            flex-wrap: wrap; /* Allow cards to wrap to the next line */
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .feature-card {
+            flex: 1 1 calc(33.333% - 1rem); /* Responsive size, 3 cards per row */
+            max-width: calc(33.333% - 1rem);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 1rem;
+        }
+        .feature-card img {
+            display: block; /* Remove default inline display */
+            margin: 0 auto; /* Center the image horizontally */
+            max-width: 60%;
+            height: auto;
+        }
+
+        .feature-card .card-body {
+            text-align: center;
+        }
+
+        .feature-card a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            background-color: #0d6efd;
+            color: white;
+            font-weight: 600; /* Bold text */
+            font-size: 1rem;
+            border: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 1rem;
+            width: 175px;
+            height: auto;
+        }
+
+        .feature-card a:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="logo-container">
+    <img src="/images/hotelMen.png" alt="Hotel Logo">
+</div>
+
+<header class="hero">
+    <div>
+        <h1>Welcome to Our Hotel Management System</h1>
+        <p>Your gateway to the finest hotels and reservations</p>
+    </div>
+</header>
+
+<div class="container my-5">
+    <div class="feature-cards">
+        <div class="feature-card card">
+            <img src="/images/sign-in-with-hand-pointer-icon-login-symbol-vector-2849631-removebg-preview.png" class="card-img-top" alt="Sign In">
+            <div class="card-body">
+                <h5 class="card-title">Sign In</h5>
+                <p class="card-text">Log in to reserve the best rooms at our hotels.</p>
+                <a href="/guest/new" class="btn btn-primary">Sign In</a>
+            </div>
+        </div>
+        <div class="feature-card card">
+            <img src="/images/1476999%20(1).png" class="card-img-top" alt="Reserve">
+            <div class="card-body">
+                <h5 class="card-title">Make a Reservation</h5>
+                <p class="card-text">Book your stay at the best hotels with ease.</p>
+                <a href="/reservation/add" class="btn btn-primary">Reserve Now</a>
+            </div>
+        </div>
+        <div class="feature-card card">
+            <img src="/images/images-removebg-preview.png" class="card-img-top" alt="Hotels">
+            <div class="card-body">
+                <h5 class="card-title">Our Hotels</h5>
+                <p class="card-text">Explore our collection of top-rated hotels.</p>
+                <a href="/hotels" class="btn btn-primary">View Hotels</a>
+            </div>
+        </div>
+        <div class="feature-card card">
+            <img src="/images/roomLogo-removebg-preview.png" class="card-img-top" alt="Rooms">
+            <br>
+            <div class="card-body">
+                <h5 class="card-title">Our Rooms</h5>
+                <p class="card-text">Discover the perfect room for your stay.</p>
+                <a href="/rooms" class="btn btn-primary">View Rooms</a>
+            </div>
+        </div>
+        <div class="feature-card card">
+            <img src="/images/images-removebg-preview.png" class="card-img-top" alt="Guests">
+            <br>
+            <br>
+            <div class="card-body">
+                <h5 class="card-title">Our Guests</h5>
+                <p class="card-text">See a list of our valued guests.</p>
+                <a href="/guests" class="btn btn-primary">Guests</a>
+            </div>
+        </div>
+        <div class="feature-card card">
+            <img src="/images/reserved-removebg-preview.png" class="card-img-top" alt="Reservations">
+            <div class="card-body">
+                <h5 class="card-title">Reservations</h5>
+                <p class="card-text">Check out the reservations made by our clients.</p>
+                <a href="/reservations" class="btn btn-primary">Reservations</a>
+            </div>
+        </div>
+        <div class="feature-card card">
+            <img src="/images/empLogo-removebg-preview.png" class="card-img-top" alt="Employees">
+            <div class="card-body">
+                <h5 class="card-title">Our Employees</h5>
+                <p class="card-text">Meet the hardworking team behind our success.</p>
+                <a href="/employees" class="btn btn-primary">Employees</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <p>&copy; 2024 Hotel Management System. All rights reserved.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9OMXaO9g90iF2U5XjK6uh7BFxSE4pMflLGTX9+dnB1rU75c7Vyz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-qM4JJ4frzRR0nU5aJzUpY5nLJpk/4pouyd0NnXQ2jE2iG1Dg1GxQdROXYYHH0i5U8" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Room Details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .room-photo{
+            max-width: 100%;
+            height: auto;
+        }
+        .fa-star{
+            transform: scale(0.85);
+            color: gold;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center" th:text="'Room is at the Hotel : ' + ${room.get().getHotel().getName()}" style="padding-top: 35px;padding-bottom: 35px;"></h1>
+    <div class="text-center">
+        <img th:src="@{${room.get().getPhoto()}}" alt="Room Photo" class="room-photo">
+    </div>
+    <div class="room-details">
+        <div class="row" style="padding-top: 35px;">
+            <div class="col-md-4">
+                <h6 class="detail-label">Room Type:</h6>
+                <h6 class="detail-value" th:text="${room.get().getRoomType()}"></h6>
+            </div>
+            <div class="col-md-4">
+                <h6 class="detail-label">Room Number:</h6>
+                <h6 class="detail-value" th:text="${room.get().getRoom_number()}"></h6>
+            </div>
+            <div class="col-md-4">
+                <h6 class="detail-label">Floor:</h6>
+                <h6 class="detail-value" th:text="${room.get().getFloor()}"></h6>
+            </div>
+        </div>
+        <div class="row" style="padding-top: 35px">
+            <div class="col-md-4">
+                <h6 class="detail-label">Price Per Night:</h6>
+                <h6 class="detail-value" th:text="${room.get().getPricePerNight()}"></h6>
+            </div>
+            <div class="col-md-4">
+                <h6 class="detail-label">Hotel Email:</h6>
+                <h6 class="detail-value" th:text="${room.get().getHotel().getEmail()}"></h6>
+            </div>
+            <h6 class="detail-label" style="padding-left: 13px">Hotel rating:</h6>
+            <h6 class="detail-value" th:text="${room.get().getHotel().getRating()}" style="padding-left: 15px;padding-right: 20px"></h6>
+            <span th:if="${room.get().getHotel().getRating()>=0.5}" class="fa fa-star checked"></span>
+            <span th:if="${room.get().getHotel().getRating()<0.5}" class="fa fa-star" style="color: black"></span>
+            <span th:if="${room.get().getHotel().getRating()>=1.5}" class="fa fa-star checked"></span>
+            <span th:if="${room.get().getHotel().getRating()<1.5}" class="fa fa-star" style="color: black"></span>
+            <span th:if="${room.get().getHotel().getRating()>=2.5}" class="fa fa-star checked"></span>
+            <span th:if="${room.get().getHotel().getRating()<2.5}" class="fa fa-star" style="color: black"></span>
+            <span th:if="${room.get().getHotel().getRating()>=3.5}" class="fa fa-star checked"></span>
+            <span th:if="${room.get().getHotel().getRating()<3.5}" class="fa fa-star" style="color: black"></span>
+            <span th:if="${room.get().getHotel().getRating()>=4.5}" class="fa fa-star checked"></span>
+            <span th:if="${room.get().getHotel().getRating()<4.5}" class="fa fa-star" style="color: black"></span>
+        </div>
+        <div class="row"  style="padding-top: 35px">
+                <div class="col-md-4">
+                    <h6 th:if="${room.get().getJacuzzi()}">
+                         Has Jacuzzi
+                    </h6>
+                </div>
+        </div>
+        <div class="row" style="padding-top: 35px">
+            <a class="btn btn-info rounded-pill" href="/hotelManagement" style="margin-right: 15px">Hope Page</a>
+            <a class="btn btn-info rounded-pill" href="/rooms" style="margin-right: 15px">Rooms</a>
+            <a class="btn btn-info rounded-pill" href="/reservation/add">Reserve</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

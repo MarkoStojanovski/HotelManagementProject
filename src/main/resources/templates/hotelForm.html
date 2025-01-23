@@ -1,0 +1,293 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title th:text="${hotel != null} ? 'Update' : 'Add Hotel'"></title>-->
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"-->
+<!--          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
+<!--    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"-->
+<!--            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"-->
+<!--            crossorigin="anonymous"></script>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"-->
+<!--            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"-->
+<!--            crossorigin="anonymous"></script>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"-->
+<!--            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"-->
+<!--            crossorigin="anonymous"></script>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            background-image: url("/images/hotelADD.jpg");-->
+<!--            background-size: cover;-->
+<!--            background-repeat: no-repeat;-->
+<!--            background-attachment: fixed;-->
+<!--            background-position: center;-->
+<!--        }-->
+
+<!--        label {-->
+<!--            font-size: 18px;-->
+<!--        }-->
+
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<div class="container" style="padding-top: 30px;">-->
+
+<!--    <h4 style="padding-bottom: 25px">Add new Hotel to our site</h4>-->
+
+<!--    <form id="addHotelForm" th:method="POST" th:action="@{ ${hotel!=null} ? '/hotel/' + ${hotel.id} : '/hotel' }"-->
+<!--          enctype="multipart/form-data">-->
+<!--        <div class="form-group">-->
+<!--            <label for="name">Name:</label>-->
+<!--            <br>-->
+<!--            <input type="text" id="name" name="name" th:value="${hotel?.getName()}" required>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="country">Country:</label>-->
+<!--            <br>-->
+<!--            <input type="text" id="country" name="country" th:value="${hotel?.getCountry()}" required>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="foundedIn">Founded In:</label>-->
+<!--            <br>-->
+<!--            <input type="date" id="foundedIn" name="foundedIn" th:value="${hotel?.getFounded_in()}" required>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="website">Website:</label>-->
+<!--            <br>-->
+<!--            <input type="url" id="website" name="website" th:value="${hotel?.getWebsite()}" required>-->
+<!--            <div th:if="${websiteError != null}" class="text-danger">-->
+<!--                <p th:text="${websiteError}"></p>-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+<!--        <div class="form-group">-->
+<!--            <label for="photo">Photo:</label>-->
+<!--            <br>-->
+<!--            <input type="file" id="photo" name="photo" required th:value="${hotel?.getPhoto()}"/>-->
+<!--            <div th:if="${uploadError != null}" class="text-danger">-->
+<!--                <p th:text="${uploadError}"></p>-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+<!--        <div class="form-group">-->
+<!--            <label for="rating">Rating:</label>-->
+<!--            <br>-->
+<!--            <input type="number" id="rating" name="rating" step="0.1" min="1" max="5" th:value="${hotel?.getRating()}"-->
+<!--                   required>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="phone">Phone:</label>-->
+<!--            <br>-->
+<!--            <input type="tel" id="phone" name="phone" th:value="${hotel?.getPhone()}" required>-->
+<!--            <div th:if="${phoneError != null}" class="text-danger">-->
+<!--                <p th:text="${phoneError}"></p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="email">Email:</label>-->
+<!--            <br>-->
+<!--            <input type="email" id="email" name="email" th:value="${hotel?.getEmail()}" required>-->
+<!--            <div th:if="${emailError != null}" class="text-danger">-->
+<!--                <p th:text="${emailError}"></p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="description">Description:</label>-->
+<!--            <br>-->
+<!--            <textarea id="description" name="description" rows="4" th:value="${hotel?.getDescription()}"></textarea>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="wifiAvailable">WiFi Available:</label>-->
+<!--            <br>-->
+<!--            <input type="checkbox" id="wifiAvailable" name="wifiAvailable" th:checked="${hotel?.getWifi_available()}"-->
+<!--                   style="transform: scale(1.65);">-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="petFriendly">Pet Friendly:</label>-->
+<!--            <br>-->
+<!--            <input type="checkbox" id="petFriendly" name="petFriendly" th:checked="${hotel?.getPet_friendly()}"-->
+<!--                   style="transform: scale(1.65);">-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="swimmingPool">Swimming Pool:</label>-->
+<!--            <br>-->
+<!--            <input type="checkbox" id="swimmingPool" name="swimmingPool" th:checked="${hotel?.getSwimming_pool()}"-->
+<!--                   style="transform: scale(1.65);">-->
+<!--        </div>-->
+<!--        <br>-->
+<!--        <a class="btn btn-primary rounded-pill" href="/hotelManagement" style="width: 85px;height: auto;">Home Page</a>-->
+<!--        <a class="btn btn-primary rounded-pill" href="/hotels" style="width: 85px;height: auto;">Go Back</a>-->
+<!--        <button type="submit" class="btn btn-primary rounded-pill" style="  width: 85px;height: auto">Add Hotel</button>-->
+
+<!--    </form>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${hotel != null} ? 'Update Hotel' : 'Add Hotel'"></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-color: lightgrey;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            color: white;
+        }
+
+        label {
+            font-size: 18px;
+        }
+
+        .form-container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .form-control {
+            background-color: #f8f9fa;
+            border-radius: 20px;
+            border: 1px solid #ced4da;
+        }
+
+        .form-check-input {
+            transform: scale(1.5);
+        }
+
+        .btn-custom {
+            width: 120px;
+            height: auto;
+            border-radius: 50px;
+            color: black;
+            background-color: #007bff;
+            border-color: #007bff;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" style="padding-top: 50px; max-width: 600px;padding-bottom: 50px">
+
+    <div class="form-container">
+        <h4 class="text-center" th:text="${hotel != null} ? 'Update Hotel' : 'Add New Hotel'"></h4>
+
+        <form id="addHotelForm" th:method="POST" th:action="@{${hotel!=null} ? '/hotel/' + ${hotel.id} : '/hotel'}"
+              enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" th:value="${hotel?.getName()}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="country">Country:</label>
+                <input type="text" class="form-control" id="country" name="country" th:value="${hotel?.getCountry()}"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="foundedIn">Founded In:</label>
+                <input type="date" class="form-control" id="foundedIn" name="foundedIn"
+                       th:value="${hotel?.getFounded_in()}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="website">Website:</label>
+                <input type="url" class="form-control" id="website" name="website" th:value="${hotel?.getWebsite()}"
+                       required>
+                <div th:if="${websiteError != null}" class="text-danger">
+                    <p th:text="${websiteError}"></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="photo">Photo:</label>
+                <input type="file" class="form-control-file" id="photo" name="photo" required
+                       th:value="${hotel?.getPhoto()}"/>
+                <div th:if="${uploadError != null}" class="text-danger">
+                    <p th:text="${uploadError}"></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="rating">Rating:</label>
+                <input type="number" class="form-control" id="rating" name="rating" step="0.1" min="1" max="5"
+                       th:value="${hotel?.getRating()}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="tel" class="form-control" id="phone" name="phone" th:value="${hotel?.getPhone()}" required>
+                <div th:if="${phoneError != null}" class="text-danger">
+                    <p th:text="${phoneError}"></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" th:value="${hotel?.getEmail()}"
+                       required>
+                <div th:if="${emailError != null}" class="text-danger">
+                    <p th:text="${emailError}"></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="4" class="form-control"
+                          th:text="${hotel?.getDescription()}"></textarea>
+            </div>
+
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="wifiAvailable" name="wifiAvailable"
+                       th:checked="${hotel?.getWifi_available()}">
+                <label class="form-check-label" for="wifiAvailable">WiFi Available</label>
+            </div>
+
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="petFriendly" name="petFriendly"
+                       th:checked="${hotel?.getPet_friendly()}">
+                <label class="form-check-label" for="petFriendly">Pet Friendly</label>
+            </div>
+
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="swimmingPool" name="swimmingPool"
+                       th:checked="${hotel?.getSwimming_pool()}">
+                <label class="form-check-label" for="swimmingPool">Swimming Pool</label>
+            </div>
+
+            <div class="text-center">
+                <a class="btn btn-custom" href="/hotelManagement">Home Page</a>
+                <a class="btn btn-custom" href="/hotels">Go Back</a>
+                <button type="submit" class="btn btn-custom" th:text="${hotel != null} ? 'Update Hotel' : 'Add Hotel'"></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
