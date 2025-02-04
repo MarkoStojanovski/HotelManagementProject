@@ -13,7 +13,11 @@
 ### Reservations - All details about the reservation.
 ### Users 
 
+## Repositories
+### JpaRepository with custom queries for database operations.
 
+## Controllers
+### Handle HTTP requests and render views using Thymeleaf for server-side rendering, managing the interaction between the frontend and backend.
 
 ## Technologies Used
 ### Backend: Java Spring Boot
