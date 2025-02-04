@@ -3,6 +3,8 @@
 ## Overview
 ### This project is a Hotel Management System built using Java Spring Boot and Thymeleaf, designed to streamline hotel operations and provide a user-friendly interface for managing reservations, guests, employees, and more.
 
+## Full Code is on master branch.
+
 ## Models
 ### Guests - Who reserved a room.
 ### Employees - Who works at the hotel.
